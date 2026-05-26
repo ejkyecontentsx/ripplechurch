@@ -1,0 +1,85 @@
+"use client";
+
+import RippleLogo from "@/components/RippleLogo";
+import { DEFAULT_JOIN_CARD_DECLARATION, SITE_URL } from "@/lib/constants";
+import { QRCodeSVG } from "qrcode.react";
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+export default function JoinCard({
+  name,
+  declaration,
+  joinedAt,
+  qrUrl,
+}: {
+  name?: string;
+  declaration?: string;
+  joinedAt: Date;
+  qrUrl?: string;
+}) {
+  const displayDeclaration =
+    declaration?.trim() || DEFAULT_JOIN_CARD_DECLARATION;
+
+  return (
+    <div className="holo-card h-full w-full">
+      <div className="holo-card-inner h-full w-full">
+        <div
+          className="relative flex h-full w-full flex-col items-center justify-between px-8 py-6"
+          style={{
+            backgroundColor: "#1a1a2e",
+            fontFamily: "Pretendard, system-ui, sans-serif",
+          }}
+        >
+          <div className="holo-pattern" aria-hidden />
+          <div className="holo-noise" aria-hidden />
+          <div className="holo-sparkle" aria-hidden />
+
+          {qrUrl && (
+            <div className="absolute left-5 top-5 z-20 rounded-lg bg-white/95 p-2 shadow-sm">
+              <QRCodeSVG
+                value={qrUrl}
+                size={76}
+                bgColor="transparent"
+                fgColor="#0b0b16"
+                includeMargin={false}
+              />
+            </div>
+          )}
+
+          <div className="relative z-10 flex flex-col items-center pt-2">
+            <RippleLogo
+              className="h-48 w-auto"
+              variant="dark"
+              showText={false}
+              animated={false}
+            />
+            <p className="mt-1 text-xs font-bold tracking-widest text-white">
+              RIPPLE CHURCH
+            </p>
+          </div>
+
+          <div className="relative z-10 max-w-md px-4 text-center">
+            <p className="text-base leading-snug text-white">{displayDeclaration}</p>
+            {!!name?.trim() && (
+              <p className="mt-2 text-lg font-medium text-accent">{name.trim()}</p>
+            )}
+          </div>
+
+          <div className="relative z-10 pb-1 text-center">
+            <p className="text-xs text-gray-300">
+              위 사람은 본 리플교의 신도임을 증명합니다
+            </p>
+            <p className="mt-1 text-xs text-gray-400">{formatDate(joinedAt)}</p>
+            <p className="text-xs text-gray-500">{SITE_URL}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.holo-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.holo-card-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+/* 홀로그램 쉬인·스캔: 1.5배 크기, 카드 테두리에서 clip */
+.holo-card-inner::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  left: -25%;
+  top: -25%;
+  border-radius: 14px;
+  background:
+    radial-gradient(1800px 750px at 10% 0%, rgba(255, 255, 255, 0.18), transparent 60%),
+    radial-gradient(1350px 675px at 90% 20%, rgba(140, 120, 255, 0.2), transparent 60%),
+    radial-gradient(1350px 675px at 20% 100%, rgba(70, 225, 255, 0.18), transparent 60%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0.1));
+  mix-blend-mode: screen;
+  opacity: 0.65;
+  filter: blur(0.2px);
+  animation: holo-sweep 2.8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.holo-card-inner::after {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  left: -25%;
+  top: -25%;
+  border-radius: 14px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0) 0px,
+      rgba(255, 255, 255, 0) 2px,
+      rgba(255, 255, 255, 0.06) 3px
+    ),
+    radial-gradient(600px 420px at 20% 20%, rgba(255, 255, 255, 0.18), transparent 60%),
+    radial-gradient(900px 600px at 80% 70%, rgba(255, 255, 255, 0.1), transparent 65%);
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+  animation: holo-scan 1.9s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.holo-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: url("/logo.svg");
+  background-repeat: repeat;
+  background-size: 190px auto;
+  background-position: 20px 14px;
+  transform: rotate(-8deg) scale(1.05);
+  opacity: 0.06;
+  filter: grayscale(1) brightness(1.35) contrast(1.1);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.holo-noise {
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.holo-sparkle {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.75), transparent 60%),
+    radial-gradient(1.5px 1.5px at 60% 35%, rgba(180, 255, 255, 0.75), transparent 60%),
+    radial-gradient(1.5px 1.5px at 75% 65%, rgba(255, 210, 255, 0.7), transparent 60%),
+    radial-gradient(2px 2px at 35% 75%, rgba(255, 255, 200, 0.7), transparent 60%),
+    radial-gradient(1.5px 1.5px at 85% 25%, rgba(200, 220, 255, 0.7), transparent 60%);
+  opacity: 0.25;
+  mix-blend-mode: screen;
+  filter: blur(0.2px);
+  animation: sparkle-float 3.6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 4;
+}
+
+@keyframes holo-sweep {
+  0% {
+    transform: translateX(-12%) translateY(-4%) rotate(-2deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(10%) translateY(4%) rotate(2deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(-12%) translateY(-4%) rotate(-2deg);
+    opacity: 0.35;
+  }
+}
+
+@keyframes holo-scan {
+  0% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(12px);
+  }
+}
+
+@keyframes sparkle-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translateY(-3px) scale(1.02);
+    opacity: 0.34;
+  }
+}
+
+.ripple-ring {
+  animation: ripple 3s ease-out infinite;
+}
+
+.ripple-ring:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.ripple-ring:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.ripple-ring:nth-child(3) {
+  animation-delay: 2s;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
