@@ -3,6 +3,7 @@ import { Link } from "@/i18n/routing";
 import RippleLogo from "@/components/RippleLogo";
 import { getWeeklyWaveContent } from "@/lib/supabase";
 import { listWeeklyWaves } from "@/lib/weeklyWaveStore";
+import { getPlainPreview } from "@/lib/richText";
 import { getDateLocale } from "@/lib/dateLocale";
 
 type Props = {
@@ -56,7 +57,7 @@ export default async function HomePage({ params: { locale } }: Props) {
           </div>
           <h2 className="mb-2 text-lg font-semibold text-foreground">{latestContent.title}</h2>
           <p className="line-clamp-3 text-sm leading-relaxed text-muted">
-            {latestContent.content}
+            {getPlainPreview(latestContent.content)}
           </p>
           <Link
             href={`/weekly/${latest.slug}`}

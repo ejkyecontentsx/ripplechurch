@@ -134,6 +134,8 @@
     "slugPlaceholder": "空欄の場合は発行日を使用（例: 2026-05-26）",
     "titleLabel": "タイトル",
     "contentLabel": "本文",
+    "contentPlaceholder": "週間の波動の本文を書いてください",
+    "contentRequired": "各言語の本文を書いてください。",
     "submit": "波動を送る",
     "submitting": "送信中...",
     "submitSuccess": "週間の波動が登録されました。",

@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { getWeeklyWaveContent, type WeeklyWave } from "@/lib/supabase";
 import type { WeeklyWaveStorage } from "@/lib/weeklyWaveStore";
+import RichTextContent from "@/components/RichTextContent";
 import { getDateLocale } from "@/lib/dateLocale";
 
 function getWavedIds(): Set<string> {
@@ -121,7 +122,7 @@ export default function WeeklyWaveDetailClient({ slug }: { slug: string }) {
       </div>
 
       <h1 className="mb-6 text-2xl font-semibold md:text-3xl">{title}</h1>
-      <div className="whitespace-pre-wrap text-base leading-relaxed text-muted">{content}</div>
+      <RichTextContent html={content} />
 
       {error && <p className="mt-6 text-sm text-red-500">{error}</p>}
 

@@ -134,6 +134,8 @@
     "slugPlaceholder": "Leave blank to use publish date (e.g. 2026-05-26)",
     "titleLabel": "Title",
     "contentLabel": "Body",
+    "contentPlaceholder": "Write your weekly wave",
+    "contentRequired": "Please write content for each language.",
     "submit": "Send wave",
     "submitting": "Sending...",
     "submitSuccess": "Weekly wave published.",

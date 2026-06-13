@@ -134,6 +134,8 @@
     "slugPlaceholder": "비우면 발행일 사용 (예: 2026-05-26)",
     "titleLabel": "제목",
     "contentLabel": "본문",
+    "contentPlaceholder": "주간 파동 본문을 작성하세요",
+    "contentRequired": "각 언어 본문을 작성해 주세요.",
     "submit": "파동 보내기",
     "submitting": "보내는 중...",
     "submitSuccess": "주간 파동이 등록되었습니다.",

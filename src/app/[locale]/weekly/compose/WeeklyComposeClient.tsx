@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/routing";
+import RichTextEditor from "@/components/RichTextEditor";
+import { hasRichTextContent } from "@/lib/richText";
 
 type LocaleFields = {
   title: string;
@@ -82,6 +84,12 @@ export default function WeeklyComposeClient() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!hasRichTextContent(ko.content) || !hasRichTextContent(en.content) || !hasRichTextContent(ja.content)) {
+      setError(t("contentRequired"));
+      return;
+    }
+
     setSubmitting(true);
     setError("");
     setSuccess("");
@@ -142,15 +150,11 @@ export default function WeeklyComposeClient() {
       </div>
       <div>
         <label className="mb-1 block text-sm font-medium">{t("contentLabel")}</label>
-        <textarea
-          required
-          rows={8}
-          maxLength={8000}
+        <RichTextEditor
           value={fields.content}
-          onChange={(e) => setFields({ ...fields, content: e.target.value })}
-          className="w-full resize-y rounded-lg border border-gray-200 px-4 py-2 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          onChange={(html) => setFields({ ...fields, content: html })}
+          placeholder={t("contentPlaceholder")}
         />
-        <p className="mt-1 text-right text-xs text-muted">{fields.content.length}/8000</p>
       </div>
     </fieldset>
   );

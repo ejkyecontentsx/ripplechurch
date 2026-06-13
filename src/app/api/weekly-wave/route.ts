@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { createWeeklyWave, listWeeklyWaves } from "@/lib/weeklyWaveStore";
+import { hasRichTextContent } from "@/lib/richText";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const MAX_TITLE = 120;
-const MAX_CONTENT = 8000;
+const MAX_CONTENT = 32000;
 
 function validatePayload(body: Record<string, unknown>) {
   const slug = String(body.slug ?? "").trim().toLowerCase();
@@ -30,8 +31,8 @@ function validatePayload(body: Record<string, unknown>) {
     if (!title || title.length > MAX_TITLE) {
       return { error: `${label} 제목은 1~${MAX_TITLE}자여야 합니다.` };
     }
-    if (!content || content.length > MAX_CONTENT) {
-      return { error: `${label} 본문은 1~${MAX_CONTENT}자여야 합니다.` };
+    if (!hasRichTextContent(content) || content.length > MAX_CONTENT) {
+      return { error: `${label} 본문은 1~${MAX_CONTENT}자(HTML)여야 합니다.` };
     }
   }
 

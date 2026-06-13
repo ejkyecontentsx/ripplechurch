@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { getWeeklyWaveContent, type WeeklyWave } from "@/lib/supabase";
 import type { WeeklyWaveStorage } from "@/lib/weeklyWaveStore";
+import { getPlainPreview } from "@/lib/richText";
 import { getDateLocale } from "@/lib/dateLocale";
 
 function getWavedIds(): Set<string> {
@@ -122,8 +123,7 @@ export default function WeeklyWavePageClient() {
         <div className="flex flex-col gap-6">
           {waves.map((item, index) => {
             const { title, content } = getWeeklyWaveContent(item, locale);
-            const preview =
-              content.length > 180 ? `${content.slice(0, 180).trim()}…` : content;
+            const preview = getPlainPreview(content);
 
             return (
               <article
