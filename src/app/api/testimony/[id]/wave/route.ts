@@ -1,38 +1,20 @@
 import { NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
+import { incrementTestimonyWave } from "@/lib/testimonyStore";
 
 export async function PATCH(
   _request: Request,
   { params }: { params: { id: string } }
 ) {
-  const supabase = getSupabase();
-  if (!supabase) {
-    return NextResponse.json(
-      { error: "Supabase is not configured" },
-      { status: 503 }
-    );
+  try {
+    const { testimony } = await incrementTestimonyWave(params.id);
+    return NextResponse.json(testimony);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "공감 파동을 보내지 못했습니다.";
+    const status = message.includes("찾을 수 없습니다")
+      ? 404
+      : message.includes("설정되지 않았습니다")
+        ? 503
+        : 500;
+    return NextResponse.json({ error: message }, { status });
   }
-
-  const { data: current, error: fetchError } = await supabase
-    .from("testimonies")
-    .select("waves")
-    .eq("id", params.id)
-    .single();
-
-  if (fetchError || !current) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
-  }
-
-  const { data, error } = await supabase
-    .from("testimonies")
-    .update({ waves: current.waves + 1 })
-    .eq("id", params.id)
-    .select()
-    .single();
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  return NextResponse.json(data);
 }

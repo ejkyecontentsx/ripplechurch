@@ -1,26 +1,27 @@
--- Supabase 테이블 생성 (SQL Editor에서 실행)
-create table testimonies (
+-- Supabase SQL Editor에서 실행
+create table if not exists testimonies (
   id uuid default gen_random_uuid() primary key,
   nickname text not null,
   content text not null,
-  waves integer default 0,
-  created_at timestamp with time zone default now()
+  waves integer default 0 not null,
+  created_at timestamp with time zone default now() not null
 );
 
--- RLS 활성화
 alter table testimonies enable row level security;
 
--- 읽기: 전체 허용
+drop policy if exists "Anyone can read testimonies" on testimonies;
+drop policy if exists "Anyone can insert testimonies" on testimonies;
+drop policy if exists "Anyone can update waves" on testimonies;
+
 create policy "Anyone can read testimonies"
   on testimonies for select
   using (true);
 
--- 쓰기: anon 허용
 create policy "Anyone can insert testimonies"
   on testimonies for insert
   with check (true);
 
--- 업데이트: anon 허용 (waves +1)
 create policy "Anyone can update waves"
   on testimonies for update
-  using (true);
+  using (true)
+  with check (true);

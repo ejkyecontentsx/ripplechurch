@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { Testimony } from "@/lib/supabase";
+import type { TestimonyStorage } from "@/lib/testimonyStore";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("ko-KR", {
@@ -29,6 +30,7 @@ function markWaved(id: string) {
 
 export default function TestimonyPageClient() {
   const [testimonies, setTestimonies] = useState<Testimony[]>([]);
+  const [storage, setStorage] = useState<TestimonyStorage>("unavailable");
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
@@ -39,10 +41,15 @@ export default function TestimonyPageClient() {
   const fetchTestimonies = useCallback(async () => {
     try {
       const res = await fetch("/api/testimony");
-      if (res.ok) {
-        const data = await res.json();
-        setTestimonies(data);
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error ?? "간증을 불러오지 못했습니다.");
+        return;
       }
+      setTestimonies(data.testimonies ?? []);
+      setStorage(data.storage ?? "unavailable");
+    } catch {
+      setError("간증을 불러오지 못했습니다.");
     } finally {
       setLoading(false);
     }
@@ -82,15 +89,20 @@ export default function TestimonyPageClient() {
         }),
       });
 
-      if (!res.ok) throw new Error("failed");
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error ?? "간증을 보내지 못했습니다.");
+      }
 
-      const saved = await res.json();
       setTestimonies((prev) =>
-        prev.map((t) => (t.id === optimistic.id ? saved : t))
+        prev.map((t) => (t.id === optimistic.id ? data.testimony : t))
       );
-    } catch {
+      setStorage(data.storage ?? storage);
+    } catch (err) {
       setTestimonies((prev) => prev.filter((t) => t.id !== optimistic.id));
-      setError("간증을 보내지 못했습니다. 잠시 후 다시 시도해주세요.");
+      setError(
+        err instanceof Error ? err.message : "간증을 보내지 못했습니다. 잠시 후 다시 시도해주세요."
+      );
     } finally {
       setSubmitting(false);
     }
@@ -106,7 +118,15 @@ export default function TestimonyPageClient() {
     );
 
     try {
-      await fetch(`/api/testimony/${id}/wave`, { method: "PATCH" });
+      const res = await fetch(`/api/testimony/${id}/wave`, { method: "PATCH" });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error ?? "failed");
+      }
+      const updated = await res.json();
+      setTestimonies((prev) =>
+        prev.map((t) => (t.id === id ? updated : t))
+      );
     } catch {
       setWavedIds((prev) => {
         const next = new Set(prev);
@@ -122,6 +142,23 @@ export default function TestimonyPageClient() {
   return (
     <section className="mx-auto max-w-5xl px-4 py-12 md:py-16">
       <h1 className="mb-8 text-center text-2xl font-semibold md:text-3xl">간증</h1>
+
+      {storage === "unavailable" && (
+        <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          간증 저장소(Supabase)가 연결되지 않았습니다. Vercel 환경변수에{" "}
+          <code className="rounded bg-amber-100 px-1">NEXT_PUBLIC_SUPABASE_URL</code>,{" "}
+          <code className="rounded bg-amber-100 px-1">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>를
+          등록하고 Supabase에서 <code className="rounded bg-amber-100 px-1">supabase/schema.sql</code>을
+          실행해 주세요.
+        </div>
+      )}
+
+      {storage === "local" && (
+        <div className="mb-6 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
+          로컬 개발 모드: 간증이 <code className="rounded bg-blue-100 px-1">data/testimonies.json</code>에
+          저장됩니다. 배포 환경에서는 Supabase 설정이 필요합니다.
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="mb-12 rounded-xl border border-gray-100 bg-gray-50 p-6">
         <div className="mb-4">
@@ -161,7 +198,7 @@ export default function TestimonyPageClient() {
 
         <button
           type="submit"
-          disabled={submitting}
+          disabled={submitting || storage === "unavailable"}
           className="w-full rounded-full bg-accent py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto sm:px-8"
         >
           {submitting ? "보내는 중..." : "파동 보내기"}
@@ -171,7 +208,7 @@ export default function TestimonyPageClient() {
       {loading ? (
         <p className="text-center text-muted">파동을 불러오는 중...</p>
       ) : testimonies.length === 0 ? (
-        <p className="text-center text-muted">아직 간증이 없습니다. 첫 파동을 보내보세요.</p>
+        <p className="text-center text-muted">아직 간증이 없습니다. 첫 파동을 내보세요.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonies.map((t) => (
@@ -187,7 +224,7 @@ export default function TestimonyPageClient() {
               <button
                 type="button"
                 onClick={() => handleWave(t.id)}
-                disabled={wavedIds.has(t.id)}
+                disabled={wavedIds.has(t.id) || storage === "unavailable"}
                 className="self-start text-sm text-accent transition-opacity hover:opacity-80 disabled:cursor-default disabled:opacity-50"
               >
                 공감 파동 보내기 ⚡ {t.waves > 0 && `(${t.waves})`}

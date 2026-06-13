@@ -29,6 +29,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local testimony fallback (dev only)
+/data/testimonies.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
