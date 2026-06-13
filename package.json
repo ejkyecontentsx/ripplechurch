@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "generate:scripture-en-pdf": "node scripts/generate-scripture-en-pdf.mjs",
+    "generate:scripture-ja-pdf": "node scripts/generate-scripture-ja-pdf.mjs",
+    "generate:scripture-pdf": "npm run generate:scripture-en-pdf && npm run generate:scripture-ja-pdf",
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,17 +15,20 @@
     "@supabase/supabase-js": "^2.49.8",
     "html2canvas": "^1.4.1",
     "next": "14.2.35",
+    "next-intl": "^3.26.5",
     "qrcode.react": "^4.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.17.57",
+    "@types/pdfkit": "^0.17.6",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.35",
+    "pdfkit": "^0.19.1",
     "postcss": "^8.5.4",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3"

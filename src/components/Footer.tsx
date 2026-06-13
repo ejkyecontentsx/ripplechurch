@@ -1,7 +1,13 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 export default function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <footer className="border-t border-gray-100 py-8 text-center text-sm text-muted">
-      <p>© Ripple Church. 파동은 무료입니다.</p>
+      <p>{t("tagline")}</p>
     </footer>
   );
 }

@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "siteTitle": "Ripple Church",
+    "siteDescription": "人間は波動を放射し、感知する。良い波動を作れ。",
+    "aboutTitle": "紹介 — Ripple Church",
+    "scriptureTitle": "波の書 — Ripple Church",
+    "joinTitle": "入教 — Ripple Church",
+    "joinCardTitle": "入教カード — Ripple Church",
+    "testimonyTitle": "証言 — Ripple Church"
+  },
+  "nav": {
+    "scripture": "経典",
+    "join": "入教",
+    "testimony": "証言",
+    "about": "紹介",
+    "openMenu": "メニューを開く",
+    "language": "言語"
+  },
+  "footer": {
+    "tagline": "© Ripple Church. 波動は無料です。"
+  },
+  "home": {
+    "headline": "人間は波動を放射し、感知する",
+    "subheadline": "良い波動を作れ",
+    "readScripture": "経典を読む",
+    "join": "入教する"
+  },
+  "scripture": {
+    "title": "波の書",
+    "subtitle": "Book of Waves",
+    "commandmentLabel": "第 {number} 戒",
+    "downloadPdf": "経典全文をダウンロード (PDF)",
+    "pdfPath": "/scripture-ja.pdf"
+  },
+  "commandments": [
+    "人間は波動を放射し、感知する",
+    "あなたの思考はあなたの中に留まらない",
+    "まず思考を澄ませよ。良い人生は道徳ではなく衛生である",
+    "身体感覚を信じよ。それはまだ測定されていない感覚である",
+    "電子機器に警戒せよ。それは波動を歪める",
+    "身体を自然で満たせ。ジャンクで満ちた身体は波動を歪める",
+    "一日一度、内なる声に耳を傾けよ",
+    "波動のない関係に警戒せよ",
+    "波動は戻ってくる",
+    "良い波動を作れ"
+  ],
+  "about": {
+    "title": "紹介",
+    "whatWeAreTitle": "私たちは何か",
+    "whatWeAreBody": "Ripple Churchはミーム宗教のように見えますが、その奥には現代人の孤独とSNS疲労に対する本当の慰めがあります。私たちは笑うために存在しているのではありません。波動という比喩を通じて、互いに届く方法を語ります。",
+    "whatIsWaveTitle": "波動とは",
+    "whatIsWaveBody": "人間の脳から生じる、まだ名づけられていないウェーブ。思考、感情、直感—これらすべてが波動です。身体感覚はまだ測定されていない感覚であり、関係とは波動が触れ合う瞬間です。私たちはこの波動が実在すると信じています。",
+    "whyNowTitle": "なぜ今か",
+    "whyNowBody": "SNSの時代、私たちは絶えず波動を放射しますが、本当に触れ合う波動はますます減っています。画面の向こうの関係、既読スルー、いいね—波動のないつながりに感情を浪費していませんか？",
+    "ourFaithTitle": "私たちの信仰",
+    "commandmentItem": "第 {number} 戒 — {text}"
+  },
+  "join": {
+    "title": "入教",
+    "declaration": "今日から私は Ripple Church の信者である。\n\n私は人間が波動を放射し感知する存在であると信じる。\n私は自分の思考がすでに漏れ出していることを知っている。\n私は思考を澄ませようと努める。\n私は身体感覚を無視しない。\n私は一日一度、画面なしで内なる声を聴く。\n私は波動のない関係に感情を浪費しない。\n私は良い波動を作る。",
+    "nameLabel": "名前（任意）",
+    "namePlaceholder": "あなたの名前",
+    "declarationLabel": "あなただけの宣言（任意）",
+    "declarationPlaceholder": "カードに載せる一行の宣言を書いてください。空欄の場合は既定の文が表示されます。",
+    "submit": "波動を送る",
+    "saveImage": "画像として保存",
+    "saving": "保存中...",
+    "share": "共有する",
+    "qrHint": "QRコードを読み取ると、ウェブで入教カードを表示できます。",
+    "donationJoke": "献金はXRPで受け付けています。",
+    "donationPunchline": "（冗談です。波動は無料です。）",
+    "shareTitle": "Ripple Church 入教証明",
+    "shareText": "私は Ripple Church の信者です。良い波動を作れ。"
+  },
+  "joinCard": {
+    "defaultDeclaration": "私は Ripple Church の信者である",
+    "certification": "上記の者が本リップル教会の信者であることを証明します",
+    "viewTitle": "入教カード",
+    "lookupTitle": "入教カード照会",
+    "invalidLink": "無効なカードリンクです。",
+    "invalidLinkHint": "{joinPath} で新しく作成してください。"
+  },
+  "testimony": {
+    "title": "証言",
+    "nickname": "ニックネーム",
+    "nicknamePlaceholder": "ニックネーム（最大20文字）",
+    "content": "証言",
+    "contentPlaceholder": "あなたの波動を書いてください",
+    "submit": "波動を送る",
+    "submitting": "送信中...",
+    "loading": "波動を読み込み中...",
+    "empty": "まだ証言がありません。最初の波動を送ってください。",
+    "wave": "共感の波動を送る ⚡",
+    "fetchError": "証言を読み込めませんでした。",
+    "submitError": "証言を送信できませんでした。",
+    "submitErrorRetry": "証言を送信できませんでした。しばらくしてから再度お試しください。",
+    "devUnavailable": "証言ストレージ（Supabase）が接続されていません。Vercelの環境変数に NEXT_PUBLIC_SUPABASE_URL と NEXT_PUBLIC_SUPABASE_ANON_KEY を登録し、Supabaseで supabase/schema.sql を実行してください。",
+    "devLocal": "ローカル開発モード：証言は data/testimonies.json に保存されます。本番環境では Supabase の設定が必要です。"
+  },
+  "logo": {
+    "subtitle": "波の書"
+  }
+}

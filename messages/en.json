@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "siteTitle": "Ripple Church",
+    "siteDescription": "Humans emit and detect waves. Make good waves.",
+    "aboutTitle": "About — Ripple Church",
+    "scriptureTitle": "Book of Waves — Ripple Church",
+    "joinTitle": "Join — Ripple Church",
+    "joinCardTitle": "Membership Card — Ripple Church",
+    "testimonyTitle": "Testimonies — Ripple Church"
+  },
+  "nav": {
+    "scripture": "Scripture",
+    "join": "Join",
+    "testimony": "Testimonies",
+    "about": "About",
+    "openMenu": "Open menu",
+    "language": "Language"
+  },
+  "footer": {
+    "tagline": "© Ripple Church. Waves are free."
+  },
+  "home": {
+    "headline": "Humans emit and detect waves",
+    "subheadline": "Make good waves",
+    "readScripture": "Read Scripture",
+    "join": "Join the Church"
+  },
+  "scripture": {
+    "title": "Book of Waves",
+    "subtitle": "Book of Waves",
+    "commandmentLabel": "Commandment {number}",
+    "downloadPdf": "Download full scripture (PDF)",
+    "pdfPath": "/scripture-en.pdf"
+  },
+  "commandments": [
+    "Humans emit and detect waves",
+    "Your thoughts do not stay inside you",
+    "Clear your thoughts first. A good life is hygiene, not morality",
+    "Trust your somatic sense. It is a sensation not yet measured",
+    "Beware electronic devices. They distort waves",
+    "Fill your body with nature. A junk-filled body distorts waves",
+    "Once a day, listen to the voice within",
+    "Beware relationships without waves",
+    "Waves return",
+    "Make good waves"
+  ],
+  "about": {
+    "title": "About",
+    "whatWeAreTitle": "What We Are",
+    "whatWeAreBody": "Ripple Church may look like a meme religion, but beneath it is real comfort for modern loneliness and social-media fatigue. We do not exist to be funny. Through the metaphor of waves, we talk about how to reach one another.",
+    "whatIsWaveTitle": "What Is a Wave",
+    "whatIsWaveBody": "An as-yet-unnamed wave arising in the human brain. Thought, emotion, intuition—all of these are waves. Somatic sense is a sensation not yet measured, and relationship is the moment waves meet. We believe these waves are real.",
+    "whyNowTitle": "Why Now",
+    "whyNowBody": "In the age of social media, we constantly emit waves, yet the waves that truly meet grow fewer. Relationships beyond the screen, read receipts, likes—are you wasting your feelings on connections without waves?",
+    "ourFaithTitle": "Our Faith",
+    "commandmentItem": "Commandment {number} — {text}"
+  },
+  "join": {
+    "title": "Join",
+    "declaration": "From today, I am a believer of Ripple Church.\n\nI believe humans are beings who emit and detect waves.\nI know my thoughts are already leaking out.\nI will try to keep my thoughts clear.\nI will not ignore my somatic sense.\nOnce a day, without a screen, I will listen to the voice within.\nI will not waste my feelings on relationships without waves.\nI will make good waves.",
+    "nameLabel": "Name (optional)",
+    "namePlaceholder": "Your name",
+    "declarationLabel": "Your declaration (optional)",
+    "declarationPlaceholder": "Write a one-line declaration for your card. A default line appears if left blank.",
+    "submit": "Send your wave",
+    "saveImage": "Save as image",
+    "saving": "Saving...",
+    "share": "Share",
+    "qrHint": "Scan the QR code to view your membership card on the web.",
+    "donationJoke": "Donations are accepted in XRP.",
+    "donationPunchline": "(Just kidding. Waves are free.)",
+    "shareTitle": "Ripple Church Membership",
+    "shareText": "I am a believer of Ripple Church. Make good waves."
+  },
+  "joinCard": {
+    "defaultDeclaration": "I am a believer of Ripple Church",
+    "certification": "This certifies the above as a member of Ripple Church",
+    "viewTitle": "Membership Card",
+    "lookupTitle": "View Membership Card",
+    "invalidLink": "This card link is invalid.",
+    "invalidLinkHint": "Please create a new one at {joinPath}."
+  },
+  "testimony": {
+    "title": "Testimonies",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "Nickname (max 20 chars)",
+    "content": "Testimony",
+    "contentPlaceholder": "Write your wave",
+    "submit": "Send wave",
+    "submitting": "Sending...",
+    "loading": "Loading waves...",
+    "empty": "No testimonies yet. Send the first wave.",
+    "wave": "Send empathy wave ⚡",
+    "fetchError": "Could not load testimonies.",
+    "submitError": "Could not send testimony.",
+    "submitErrorRetry": "Could not send testimony. Please try again shortly.",
+    "devUnavailable": "Testimony storage (Supabase) is not connected. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to Vercel, then run supabase/schema.sql in Supabase.",
+    "devLocal": "Local dev mode: testimonies are saved to data/testimonies.json. Supabase is required in production."
+  },
+  "logo": {
+    "subtitle": "Book of Waves"
+  }
+}

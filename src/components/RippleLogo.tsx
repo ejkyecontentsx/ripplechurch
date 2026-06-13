@@ -3,6 +3,7 @@ interface RippleLogoProps {
   variant?: "light" | "dark";
   showText?: boolean;
   animated?: boolean;
+  subtitle?: string;
 }
 
 export default function RippleLogo({
@@ -10,6 +11,7 @@ export default function RippleLogo({
   variant = "light",
   showText = true,
   animated = true,
+  subtitle = "Book of Waves",
 }: RippleLogoProps) {
   const isDark = variant === "dark";
   const strokeOuter = isDark ? "rgba(74, 144, 217, 0.25)" : "rgba(74, 144, 217, 0.2)";
@@ -72,7 +74,7 @@ export default function RippleLogo({
             fontWeight="300"
             fontFamily="system-ui, sans-serif"
           >
-            파동의 서
+            {subtitle}
           </text>
         </>
       )}

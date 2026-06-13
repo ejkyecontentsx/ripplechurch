@@ -1,13 +1,16 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import html2canvas from "html2canvas";
-import { JOIN_DECLARATION, MAX_JOIN_CARD_DECLARATION_LENGTH, SITE_URL } from "@/lib/constants";
-import JoinCard from "@/app/join/JoinCard";
+import { MAX_JOIN_CARD_DECLARATION_LENGTH, SITE_URL } from "@/lib/constants";
+import JoinCard from "@/components/JoinCard";
 import JoinCardMount from "@/components/JoinCardMount";
 import { encodeJoinCardPayload } from "@/lib/joinCardCodec";
 
 export default function JoinPageClient() {
+  const t = useTranslations("join");
+  const locale = useLocale();
   const [name, setName] = useState("");
   const [declaration, setDeclaration] = useState("");
   const [joined, setJoined] = useState(false);
@@ -24,7 +27,7 @@ export default function JoinPageClient() {
     declaration: declaration.trim() || undefined,
     joinedAtISO: joinDate.toISOString(),
   };
-  const viewUrl = `${origin}/join/card?p=${encodeJoinCardPayload(payload)}`;
+  const viewUrl = `${origin}/${locale}/join/card?p=${encodeJoinCardPayload(payload)}`;
 
   const handleSaveImage = async () => {
     if (!cardRef.current) return;
@@ -48,8 +51,8 @@ export default function JoinPageClient() {
   const handleShare = async () => {
     try {
       await navigator.share({
-        title: "Ripple Church 입교 증명",
-        text: "나는 Ripple Church의 신자다. 선한 파동을 만들어라.",
+        title: t("shareTitle"),
+        text: t("shareText"),
         url: viewUrl,
       });
     } catch {
@@ -59,25 +62,25 @@ export default function JoinPageClient() {
 
   return (
     <section className="mx-auto max-w-2xl px-4 py-12 md:py-16">
-      <h1 className="mb-8 text-center text-2xl font-semibold md:text-3xl">입교</h1>
+      <h1 className="mb-8 text-center text-2xl font-semibold md:text-3xl">{t("title")}</h1>
 
       {!joined ? (
         <>
           <div className="whitespace-pre-line rounded-xl border border-gray-100 bg-gray-50 p-6 text-base leading-relaxed text-foreground">
-            {JOIN_DECLARATION}
+            {t("declaration")}
           </div>
 
           <div className="mt-8 space-y-6">
             <div>
               <label htmlFor="name" className="mb-1 block text-sm font-medium text-foreground">
-                이름 (선택)
+                {t("nameLabel")}
               </label>
               <input
                 id="name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="당신의 이름"
+                placeholder={t("namePlaceholder")}
                 className="w-full rounded-lg border border-gray-200 px-4 py-3 text-foreground placeholder:text-gray-400 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
               />
             </div>
@@ -87,7 +90,7 @@ export default function JoinPageClient() {
                 htmlFor="declaration"
                 className="mb-1 block text-sm font-medium text-foreground"
               >
-                나만의 선언 (선택)
+                {t("declarationLabel")}
               </label>
               <textarea
                 id="declaration"
@@ -95,7 +98,7 @@ export default function JoinPageClient() {
                 maxLength={MAX_JOIN_CARD_DECLARATION_LENGTH}
                 value={declaration}
                 onChange={(e) => setDeclaration(e.target.value)}
-                placeholder="카드에 담을 한 줄 선언을 적어주세요. 비우면 기본 문구가 표시됩니다."
+                placeholder={t("declarationPlaceholder")}
                 className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-foreground placeholder:text-gray-400 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
               />
               <p className="mt-1 text-right text-xs text-muted">
@@ -109,7 +112,7 @@ export default function JoinPageClient() {
             onClick={() => setJoined(true)}
             className="mt-6 w-full rounded-full bg-accent py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
-            파동을 보내다
+            {t("submit")}
           </button>
         </>
       ) : (
@@ -130,7 +133,7 @@ export default function JoinPageClient() {
               disabled={saving}
               className="rounded-full border border-accent px-6 py-3 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-white disabled:opacity-50"
             >
-              {saving ? "저장 중..." : "이미지로 저장"}
+              {saving ? t("saving") : t("saveImage")}
             </button>
             {canShare && (
               <button
@@ -138,19 +141,17 @@ export default function JoinPageClient() {
                 onClick={handleShare}
                 className="rounded-full border border-foreground px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-white"
               >
-                공유하기
+                {t("share")}
               </button>
             )}
           </div>
 
-          <p className="mt-4 text-center text-xs text-muted">
-            QR을 찍으면 웹에서 입교카드를 조회할 수 있습니다.
-          </p>
+          <p className="mt-4 text-center text-xs text-muted">{t("qrHint")}</p>
 
           <p className="mt-8 text-center text-xs text-muted">
-            헌금은 XRP로 받습니다.
+            {t("donationJoke")}
             <br />
-            (농담입니다. 파동은 무료입니다.)
+            {t("donationPunchline")}
           </p>
         </>
       )}

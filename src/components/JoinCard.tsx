@@ -1,11 +1,13 @@
 "use client";
 
 import RippleLogo from "@/components/RippleLogo";
-import { DEFAULT_JOIN_CARD_DECLARATION, SITE_URL } from "@/lib/constants";
+import { SITE_URL } from "@/lib/constants";
 import { QRCodeSVG } from "qrcode.react";
+import { useLocale, useTranslations } from "next-intl";
+import { getDateLocale } from "@/lib/dateLocale";
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString("ko-KR", {
+function formatDate(date: Date, locale: string) {
+  return date.toLocaleDateString(getDateLocale(locale), {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -23,8 +25,9 @@ export default function JoinCard({
   joinedAt: Date;
   qrUrl?: string;
 }) {
-  const displayDeclaration =
-    declaration?.trim() || DEFAULT_JOIN_CARD_DECLARATION;
+  const t = useTranslations("joinCard");
+  const locale = useLocale();
+  const displayDeclaration = declaration?.trim() || t("defaultDeclaration");
 
   return (
     <div className="holo-card h-full w-full">
@@ -59,9 +62,7 @@ export default function JoinCard({
               showText={false}
               animated={false}
             />
-            <p className="mt-1 text-xs font-bold tracking-widest text-white">
-              RIPPLE CHURCH
-            </p>
+            <p className="mt-1 text-xs font-bold tracking-widest text-white">RIPPLE CHURCH</p>
           </div>
 
           <div className="relative z-10 max-w-md px-4 text-center">
@@ -72,10 +73,8 @@ export default function JoinCard({
           </div>
 
           <div className="relative z-10 pb-1 text-center">
-            <p className="text-xs text-gray-300">
-              위 사람은 본 리플교의 신도임을 증명합니다
-            </p>
-            <p className="mt-1 text-xs text-gray-400">{formatDate(joinedAt)}</p>
+            <p className="text-xs text-gray-300">{t("certification")}</p>
+            <p className="mt-1 text-xs text-gray-400">{formatDate(joinedAt, locale)}</p>
             <p className="text-xs text-gray-500">{SITE_URL}</p>
           </div>
         </div>

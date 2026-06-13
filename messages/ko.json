@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "siteTitle": "Ripple Church",
+    "siteDescription": "인간은 파동을 방출하고 감지한다. 선한 파동을 만들어라.",
+    "aboutTitle": "소개 — Ripple Church",
+    "scriptureTitle": "파동의 서 — Ripple Church",
+    "joinTitle": "입교 — Ripple Church",
+    "joinCardTitle": "입교 카드 — Ripple Church",
+    "testimonyTitle": "간증 — Ripple Church"
+  },
+  "nav": {
+    "scripture": "경전",
+    "join": "입교",
+    "testimony": "간증",
+    "about": "소개",
+    "openMenu": "메뉴 열기",
+    "language": "언어"
+  },
+  "footer": {
+    "tagline": "© Ripple Church. 파동은 무료입니다."
+  },
+  "home": {
+    "headline": "인간은 파동을 방출하고 감지한다",
+    "subheadline": "선한 파동을 만들어라",
+    "readScripture": "경전 읽기",
+    "join": "입교하기"
+  },
+  "scripture": {
+    "title": "파동의 서",
+    "subtitle": "Book of Waves",
+    "commandmentLabel": "제 {number}계",
+    "downloadPdf": "경전 전문 다운로드 (PDF)",
+    "pdfPath": "/경전.pdf"
+  },
+  "commandments": [
+    "인간은 파동을 방출하고 감지한다",
+    "네 생각은 네 안에 머물지 않는다",
+    "생각부터 맑게 하라. 선한 삶은 도덕이 아니라 위생이다",
+    "육감을 믿어라. 그것은 아직 측정되지 않은 감각이다",
+    "전자기기를 경계하라. 그것은 파동을 왜곡한다",
+    "몸을 자연으로 채워라. 정크로 가득 찬 몸은 파동을 왜곡한다",
+    "하루 한 번 내면의 소리에 귀를 기울여라",
+    "파동 없는 관계를 경계하라",
+    "파동은 돌아온다",
+    "선한 파동을 만들어라"
+  ],
+  "about": {
+    "title": "소개",
+    "whatWeAreTitle": "우리는 무엇인가",
+    "whatWeAreBody": "Ripple Church는 밈 종교처럼 보이지만, 그 이면에는 현대인의 외로움과 SNS 피로감에 대한 진짜 위로가 있습니다. 우리는 웃기기 위해 존재하지 않습니다. 파동이라는 은유로, 서로에게 닿는 방법을 이야기합니다.",
+    "whatIsWaveTitle": "파동이란",
+    "whatIsWaveBody": "인간의 뇌에서 발생하는 아직 이름 붙여지지 않은 웨이브. 생각, 감정, 직감—이 모든 것은 파동입니다. 육감은 아직 측정되지 않은 감각이고, 관계는 파동이 맞닿는 순간입니다. 우리는 이 파동이 실재한다고 믿습니다.",
+    "whyNowTitle": "왜 지금인가",
+    "whyNowBody": "SNS 시대, 우리는 끊임없이 파동을 방출하지만 정작 맞닿는 파동은 점점 줄어듭니다. 화면 너머의 관계, 읽씹, 좋아요—파동 없는 연결에 감정을 낭비하고 있지는 않습니까?",
+    "ourFaithTitle": "우리의 믿음",
+    "commandmentItem": "제 {number}계 — {text}"
+  },
+  "join": {
+    "title": "입교",
+    "declaration": "나는 오늘부터 Ripple Church의 신자다.\n\n나는 인간이 파동을 방출하고 감지하는 존재임을 믿는다.\n나는 내 생각이 이미 새어나가고 있음을 안다.\n나는 생각부터 맑게 하려 노력할 것이다.\n나는 육감을 무시하지 않겠다.\n나는 하루 한 번, 화면 없이 내 안의 소리를 듣겠다.\n나는 파동 없는 관계에 내 감정을 낭비하지 않겠다.\n나는 선한 파동을 만들 것이다.",
+    "nameLabel": "이름 (선택)",
+    "namePlaceholder": "당신의 이름",
+    "declarationLabel": "나만의 선언 (선택)",
+    "declarationPlaceholder": "카드에 담을 한 줄 선언을 적어주세요. 비우면 기본 문구가 표시됩니다.",
+    "submit": "파동을 보내다",
+    "saveImage": "이미지로 저장",
+    "saving": "저장 중...",
+    "share": "공유하기",
+    "qrHint": "QR을 찍으면 웹에서 입교카드를 조회할 수 있습니다.",
+    "donationJoke": "헌금은 XRP로 받습니다.",
+    "donationPunchline": "(농담입니다. 파동은 무료입니다.)",
+    "shareTitle": "Ripple Church 입교 증명",
+    "shareText": "나는 Ripple Church의 신자다. 선한 파동을 만들어라."
+  },
+  "joinCard": {
+    "defaultDeclaration": "나는 Ripple Church의 신자다",
+    "certification": "위 사람은 본 리플교의 신도임을 증명합니다",
+    "viewTitle": "입교 카드",
+    "lookupTitle": "입교 카드 조회",
+    "invalidLink": "유효하지 않은 카드 링크입니다.",
+    "invalidLinkHint": "{joinPath}에서 다시 생성해 주세요."
+  },
+  "testimony": {
+    "title": "간증",
+    "nickname": "닉네임",
+    "nicknamePlaceholder": "닉네임 (최대 20자)",
+    "content": "간증",
+    "contentPlaceholder": "당신의 파동을 적어주세요",
+    "submit": "파동 보내기",
+    "submitting": "보내는 중...",
+    "loading": "파동을 불러오는 중...",
+    "empty": "아직 간증이 없습니다. 첫 파동을 내보세요.",
+    "wave": "공감 파동 보내기 ⚡",
+    "fetchError": "간증을 불러오지 못했습니다.",
+    "submitError": "간증을 보내지 못했습니다.",
+    "submitErrorRetry": "간증을 보내지 못했습니다. 잠시 후 다시 시도해주세요.",
+    "devUnavailable": "간증 저장소(Supabase)가 연결되지 않았습니다. Vercel 환경변수에 NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY를 등록하고 Supabase에서 supabase/schema.sql을 실행해 주세요.",
+    "devLocal": "로컬 개발 모드: 간증이 data/testimonies.json에 저장됩니다. 배포 환경에서는 Supabase 설정이 필요합니다."
+  },
+  "logo": {
+    "subtitle": "파동의 서"
+  }
+}

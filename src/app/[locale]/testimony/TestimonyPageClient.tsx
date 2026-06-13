@@ -1,16 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import type { Testimony } from "@/lib/supabase";
 import type { TestimonyStorage } from "@/lib/testimonyStore";
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
+import { getDateLocale } from "@/lib/dateLocale";
 
 function getWavedIds(): Set<string> {
   if (typeof window === "undefined") return new Set();
@@ -29,6 +23,8 @@ function markWaved(id: string) {
 }
 
 export default function TestimonyPageClient() {
+  const t = useTranslations("testimony");
+  const locale = useLocale();
   const [testimonies, setTestimonies] = useState<Testimony[]>([]);
   const [storage, setStorage] = useState<TestimonyStorage | null>(null);
   const isDev = process.env.NODE_ENV === "development";
@@ -39,22 +35,32 @@ export default function TestimonyPageClient() {
   const [wavedIds, setWavedIds] = useState<Set<string>>(new Set());
   const [error, setError] = useState("");
 
+  const formatDate = useCallback(
+    (iso: string) =>
+      new Date(iso).toLocaleDateString(getDateLocale(locale), {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }),
+    [locale]
+  );
+
   const fetchTestimonies = useCallback(async () => {
     try {
       const res = await fetch("/api/testimony");
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? "간증을 불러오지 못했습니다.");
+        setError(data.error ?? t("fetchError"));
         return;
       }
       setTestimonies(data.testimonies ?? []);
       setStorage(data.storage ?? "unavailable");
     } catch {
-      setError("간증을 불러오지 못했습니다.");
+      setError(t("fetchError"));
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     setWavedIds(getWavedIds());
@@ -92,18 +98,16 @@ export default function TestimonyPageClient() {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error ?? "간증을 보내지 못했습니다.");
+        throw new Error(data.error ?? t("submitError"));
       }
 
       setTestimonies((prev) =>
-        prev.map((t) => (t.id === optimistic.id ? data.testimony : t))
+        prev.map((item) => (item.id === optimistic.id ? data.testimony : item))
       );
       setStorage(data.storage ?? storage);
     } catch (err) {
-      setTestimonies((prev) => prev.filter((t) => t.id !== optimistic.id));
-      setError(
-        err instanceof Error ? err.message : "간증을 보내지 못했습니다. 잠시 후 다시 시도해주세요."
-      );
+      setTestimonies((prev) => prev.filter((item) => item.id !== optimistic.id));
+      setError(err instanceof Error ? err.message : t("submitErrorRetry"));
     } finally {
       setSubmitting(false);
     }
@@ -115,18 +119,17 @@ export default function TestimonyPageClient() {
     setWavedIds((prev) => new Set([...Array.from(prev), id]));
     markWaved(id);
     setTestimonies((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, waves: t.waves + 1 } : t))
+      prev.map((item) => (item.id === id ? { ...item, waves: item.waves + 1 } : item))
     );
 
     try {
       const res = await fetch(`/api/testimony/${id}/wave`, { method: "PATCH" });
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error ?? "failed");
+        throw new Error("failed");
       }
       const updated = await res.json();
       setTestimonies((prev) =>
-        prev.map((t) => (t.id === id ? updated : t))
+        prev.map((item) => (item.id === id ? updated : item))
       );
     } catch {
       setWavedIds((prev) => {
@@ -135,36 +138,31 @@ export default function TestimonyPageClient() {
         return next;
       });
       setTestimonies((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, waves: t.waves - 1 } : t))
+        prev.map((item) => (item.id === id ? { ...item, waves: item.waves - 1 } : item))
       );
     }
   };
 
   return (
     <section className="mx-auto max-w-5xl px-4 py-12 md:py-16">
-      <h1 className="mb-8 text-center text-2xl font-semibold md:text-3xl">간증</h1>
+      <h1 className="mb-8 text-center text-2xl font-semibold md:text-3xl">{t("title")}</h1>
 
       {!loading && isDev && storage === "unavailable" && (
         <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-          간증 저장소(Supabase)가 연결되지 않았습니다. Vercel 환경변수에{" "}
-          <code className="rounded bg-amber-100 px-1">NEXT_PUBLIC_SUPABASE_URL</code>,{" "}
-          <code className="rounded bg-amber-100 px-1">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>를
-          등록하고 Supabase에서 <code className="rounded bg-amber-100 px-1">supabase/schema.sql</code>을
-          실행해 주세요.
+          {t("devUnavailable")}
         </div>
       )}
 
       {!loading && isDev && storage === "local" && (
         <div className="mb-6 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
-          로컬 개발 모드: 간증이 <code className="rounded bg-blue-100 px-1">data/testimonies.json</code>에
-          저장됩니다. 배포 환경에서는 Supabase 설정이 필요합니다.
+          {t("devLocal")}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="mb-12 rounded-xl border border-gray-100 bg-gray-50 p-6">
         <div className="mb-4">
           <label htmlFor="nickname" className="mb-1 block text-sm font-medium text-foreground">
-            닉네임
+            {t("nickname")}
           </label>
           <input
             id="nickname"
@@ -173,14 +171,14 @@ export default function TestimonyPageClient() {
             required
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-            placeholder="닉네임 (최대 20자)"
+            placeholder={t("nicknamePlaceholder")}
             className="w-full rounded-lg border border-gray-200 px-4 py-2 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
           />
         </div>
 
         <div className="mb-4">
           <label htmlFor="content" className="mb-1 block text-sm font-medium text-foreground">
-            간증
+            {t("content")}
           </label>
           <textarea
             id="content"
@@ -189,7 +187,7 @@ export default function TestimonyPageClient() {
             rows={4}
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="당신의 파동을 적어주세요"
+            placeholder={t("contentPlaceholder")}
             className="w-full resize-none rounded-lg border border-gray-200 px-4 py-2 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
           />
           <p className="mt-1 text-right text-xs text-muted">{content.length}/200</p>
@@ -202,33 +200,33 @@ export default function TestimonyPageClient() {
           disabled={submitting || loading || storage === "unavailable"}
           className="w-full rounded-full bg-accent py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto sm:px-8"
         >
-          {submitting ? "보내는 중..." : "파동 보내기"}
+          {submitting ? t("submitting") : t("submit")}
         </button>
       </form>
 
       {loading ? (
-        <p className="text-center text-muted">파동을 불러오는 중...</p>
+        <p className="text-center text-muted">{t("loading")}</p>
       ) : testimonies.length === 0 ? (
-        <p className="text-center text-muted">아직 간증이 없습니다. 첫 파동을 내보세요.</p>
+        <p className="text-center text-muted">{t("empty")}</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonies.map((t) => (
+          {testimonies.map((item) => (
             <article
-              key={t.id}
+              key={item.id}
               className="flex flex-col rounded-xl border border-gray-100 bg-white p-5 shadow-sm"
             >
               <div className="mb-3 flex items-center justify-between">
-                <span className="font-medium text-foreground">{t.nickname}</span>
-                <span className="text-xs text-muted">{formatDate(t.created_at)}</span>
+                <span className="font-medium text-foreground">{item.nickname}</span>
+                <span className="text-xs text-muted">{formatDate(item.created_at)}</span>
               </div>
-              <p className="mb-4 flex-1 text-sm leading-relaxed text-muted">{t.content}</p>
+              <p className="mb-4 flex-1 text-sm leading-relaxed text-muted">{item.content}</p>
               <button
                 type="button"
-                onClick={() => handleWave(t.id)}
-                disabled={wavedIds.has(t.id) || storage === "unavailable"}
+                onClick={() => handleWave(item.id)}
+                disabled={wavedIds.has(item.id) || storage === "unavailable"}
                 className="self-start text-sm text-accent transition-opacity hover:opacity-80 disabled:cursor-default disabled:opacity-50"
               >
-                공감 파동 보내기 ⚡ {t.waves > 0 && `(${t.waves})`}
+                {t("wave")} {item.waves > 0 && `(${item.waves})`}
               </button>
             </article>
           ))}

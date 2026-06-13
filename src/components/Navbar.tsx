@@ -1,18 +1,20 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { Link, usePathname } from "@/i18n/routing";
 import RippleLogo from "./RippleLogo";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const navItems = [
-  { href: "/scripture", label: "경전" },
-  { href: "/join", label: "입교" },
-  { href: "/testimony", label: "간증" },
-  { href: "/about", label: "소개" },
+  { href: "/scripture" as const, key: "scripture" as const },
+  { href: "/join" as const, key: "join" as const },
+  { href: "/testimony" as const, key: "testimony" as const },
+  { href: "/about" as const, key: "about" as const },
 ];
 
 export default function Navbar() {
+  const t = useTranslations("nav");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -26,38 +28,44 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={`text-sm transition-colors hover:text-accent ${
-                  pathname === item.href ? "font-medium text-accent" : "text-muted"
-                }`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden items-center gap-6 md:flex">
+          <ul className="flex items-center gap-8">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`text-sm transition-colors hover:text-accent ${
+                    pathname === item.href ? "font-medium text-accent" : "text-muted"
+                  }`}
+                >
+                  {t(item.key)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <LanguageSwitcher />
+        </div>
 
-        <button
-          type="button"
-          className="flex flex-col gap-1.5 p-2 md:hidden"
-          aria-label="메뉴 열기"
-          aria-expanded={open}
-          onClick={() => setOpen(!open)}
-        >
-          <span
-            className={`block h-0.5 w-6 bg-foreground transition-transform ${open ? "translate-y-2 rotate-45" : ""}`}
-          />
-          <span
-            className={`block h-0.5 w-6 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`}
-          />
-          <span
-            className={`block h-0.5 w-6 bg-foreground transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`}
-          />
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher compact />
+          <button
+            type="button"
+            className="flex flex-col gap-1.5 p-2"
+            aria-label={t("openMenu")}
+            aria-expanded={open}
+            onClick={() => setOpen(!open)}
+          >
+            <span
+              className={`block h-0.5 w-6 bg-foreground transition-transform ${open ? "translate-y-2 rotate-45" : ""}`}
+            />
+            <span
+              className={`block h-0.5 w-6 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block h-0.5 w-6 bg-foreground transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`}
+            />
+          </button>
+        </div>
       </nav>
 
       {open && (
@@ -72,7 +80,7 @@ export default function Navbar() {
                   }`}
                   onClick={() => setOpen(false)}
                 >
-                  {item.label}
+                  {t(item.key)}
                 </Link>
               </li>
             ))}

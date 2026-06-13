@@ -1,0 +1,129 @@
+{
+  "title": "Book of Waves",
+  "subtitle": "Book of Waves",
+  "edition": "First Edition",
+  "labels": {
+    "declaration": "◎ Declaration",
+    "commentary": "◎ Commentary",
+    "commandmentFormat": "Commandment {number}  {title}"
+  },
+  "preface": {
+    "title": "Preface — To You Who Hold This Book",
+    "paragraphs": [
+      "Let us be honest. Are you happy right now?",
+      "When you open social media, someone is traveling, someone got promoted, someone is being loved. When you close the screen, something in your chest feels strangely hollow. Nothing in your daily life has actually changed.",
+      "Lying alone at night, you feel as if you are the only person in the world. Not because you have no one to contact. Simply because it feels as if no one truly knows you.",
+      "You are not alone in this. Almost everyone living in this era feels the same.",
+      "Ripple Church is a religion. But there is no god. Instead, there are waves.",
+      "We believe humans are beings who emit and detect waves. And we believe that faith — surprisingly — can explain your loneliness and anxiety.",
+      "This book is scripture. You do not have to read it seriously. Just read, and at some point you will find yourself nodding.",
+      "The wave has already begun."
+    ]
+  },
+  "genesis": {
+    "title": "Genesis — The Beginning of Waves",
+    "paragraphs": [
+      "In the beginning, there was the brain.",
+      "The brain is not a simple organ. The brain constantly sends something outward: electrical signals, chemicals, and something we have not yet named. Scientists try to measure it, but have not fully captured it yet.",
+      "But you already know.",
+      "Have you ever sensed your boss was in a bad mood today without a single change in expression, the moment they walked through the door? Have you ever felt a long-time friend would call today, before the phone rang? Have you ever entered a place and felt uncomfortable for no clear reason?",
+      "That is a wave.",
+      "Humans read one another's waves. Words are not required. A gaze, breath, the tremor in a voice, and some frequency still without a name — all of this flows between people.",
+      "We often call this intuition. But intuition is not a mystical power. It is humanity's oldest sense, shaped by millions of years of evolution. Long before language, humans survived by reading one another's waves.",
+      "And now, we are losing that sense.",
+      "Screens appeared. Notifications appeared. Likes appeared. Followers appeared. We spend our days submerged in images without waves. And gradually, we forget how to detect real ones.",
+      "Ripple Church is a community that seeks to recover that sense."
+    ]
+  },
+  "commandmentsIntro": {
+    "title": "The Ten Commandments of Waves",
+    "text": "The following are the ten commandments of Ripple Church. You do not need to memorize them. Just read. The wave will already be delivered."
+  },
+  "commandments": [
+    {
+      "number": 1,
+      "title": "Humans emit and detect waves.",
+      "declaration": "This is the one truth we believe. Every other commandment begins here.",
+      "commentary": "Your brain is sending something outward even in this very moment. Science has not yet fully revealed what frequency it is or by what path it travels. But you have already experienced it hundreds of times in your life.\n\nFeeling uneasy for no reason on a crowded subway. Trusting someone you just met. The air turning cold without a single word spoken.\n\nThat was not your imagination.",
+      "quote": "Waves are real. You have already been feeling them."
+    },
+    {
+      "number": 2,
+      "title": "Your thoughts do not stay inside you.",
+      "declaration": "The wave is already leaking out. People close to you can already feel what you are thinking.",
+      "commentary": "When you dislike someone and smile anyway, they sense that something is off. When you are anxious and pretend otherwise, your voice changes subtly. When you are genuinely glad, the air in the room changes.\n\nWe believe we can hide our thoughts. But waves cannot be hidden.\n\nThis is an uncomfortable truth. It is also a comforting one. If you truly care for someone — that, too, is already being delivered.",
+      "quote": "Even without words, the wave arrives first."
+    },
+    {
+      "number": 3,
+      "title": "Clear your thoughts first. A good life is hygiene, not morality.",
+      "declaration": "This is not a command to live kindly. Dirty thoughts make dirty waves, and they return to you.",
+      "commentary": "Morality is coercion. Hygiene is choice. You brush your teeth not for others, but so your own mouth does not rot.\n\nThoughts work the same way. If your mind is filled all day with envy, anger, and self-hatred — the waves those thoughts create surround you. And those waves seep into every relationship you form.\n\nRipple Church does not demand that you become a good person. It only asks: what scent is your inner life giving off right now?",
+      "quote": "A clean inner life is where good waves begin."
+    },
+    {
+      "number": 4,
+      "title": "Trust your somatic sense. It is a sensation not yet measured.",
+      "declaration": "Intuition is not superstition. It is an ancient human ability science has not yet caught up with.",
+      "commentary": "Think of shamans or fortune-tellers. We either find them fascinating or call them frauds. But there is a third possibility.\n\nThey may be people highly trained to read the waves arising in the brain. The human brain constantly emits waves. We have not yet perfected the tools to measure them, but the waves are real. And some people push the ability to detect them to an extreme.\n\nYou can do this too. It only requires practice.\n\nIf you keep ignoring intuition, it weakens. If you practice listening to it, you read people, situations, and yourself more clearly.",
+      "quote": "Before you doubt, once trust what you feel."
+    },
+    {
+      "number": 5,
+      "title": "Beware electronic devices. They distort waves.",
+      "declaration": "If you remain too long in a world without waves, your ability to read them dulls.",
+      "commentary": "Electronic devices constantly emit electromagnetic radiation. The waves arising in our brains are extremely delicate. Those delicate waves are interfered with and distorted in the flood of electronic signals devices create — much like noise appears when you turn on a phone beside precise measuring equipment.\n\nWe spend an average of seven hours a day with electronic devices. During those seven hours, our brains sit inside constant electromagnetic interference. As a result, our sensitivity to the waves arising in the brain when we sit before real people declines.\n\nWith sustained interference, the brain begins reacting only to stronger stimulation. Subtle wave signals are buried in noise. You must protect your receiver.",
+      "quote": "Live one hour a day without a screen."
+    },
+    {
+      "number": 6,
+      "title": "Fill your body with nature. A junk-filled body distorts waves.",
+      "declaration": "Waves are emitted and received through the body. If the body is clouded, the wave is clouded.",
+      "commentary": "This is not a health lecture. We are not here to judge what you eat. We only want to share one observation.\n\nOn a day when you are extremely tired, eating only junk food, and unable to sleep — do you read other people's emotions well? Probably not. Irritation comes first. You are wounded by small things. You react in ways that make you ask, why am I like this?\n\nThe state of the body determines the sensitivity of the wave receiver. Food from nature, enough sleep, moderate movement — this is Ripple Church's practice. Not sacred duty, but preparation to feel more clearly.",
+      "quote": "Clean the antenna. Reception changes."
+    },
+    {
+      "number": 7,
+      "title": "Once a day, listen to the voice within.",
+      "declaration": "Those who cannot hear themselves cannot hear others.",
+      "commentary": "Call it meditation and it sounds grand, so think of it simply: ten minutes a day when you do nothing.\n\nIn that time, listen to what sound rises inside you. Anxiety? Loneliness? Resentment? Expectation? Just tired? Whatever it is, do not judge it. Just listen.\n\nYou must detect your own wave first in order to detect another's. If your inner world is noisy, the signal beside you cannot be heard. Like tuning a radio, you must reduce static first.\n\nThis is Ripple Church's only practice. No cost, no place required. Ten minutes is enough.",
+      "quote": "You must become quiet to hear."
+    },
+    {
+      "number": 8,
+      "title": "Beware relationships without waves.",
+      "declaration": "What you gain where there are only images and no waves is not connection.",
+      "commentary": "There are people with ten thousand followers who are lonely. And people with three friends who feel full.\n\nThe difference is waves.\n\nRelationships on social media are relationships without waves. I share only my best photo, my wittiest line, my happiest-looking moment. The other person does the same. We see only one another's highlights. Without waves. Without context.\n\nThe more those relationships accumulate, the more you fall into the illusion that you alone are imperfect among people who look perfect.\n\nRelationships with waves are different. You feel the other person's fatigue, mistakes, and awkwardness too. That is why they are more real. That is why they are less lonely.",
+      "quote": "One relationship where waves flow is better than ten thousand followers."
+    },
+    {
+      "number": 9,
+      "title": "Waves return.",
+      "declaration": "What you send spreads through the world and inevitably returns to you.",
+      "commentary": "This is not a karma story. It is a neuroscience story.\n\nIf you genuinely attend to someone, they feel it. And they treat you differently. If you continuously send good waves to the people you meet, the wave ecology around you changes. At some point, you find yourself among good people. It is not coincidence. It is the wave environment you created.\n\nThe reverse is also true. If you continuously emit waves filled with anger, envy, and distrust — an environment that resonates with those waves is created.\n\nThe universe is not listening. People are feeling.",
+      "quote": "Waves become echoes."
+    },
+    {
+      "number": 10,
+      "title": "Make good waves.",
+      "declaration": "This is the first and last of Ripple Church.",
+      "commentary": "What is a good wave?\n\nIt is not grand. Meeting someone's eyes in an elevator and nodding lightly. Listening to a friend's words to the end without pretending to be busy. Handing a cup of coffee to a tired colleague for no reason.\n\nThose are waves. They spread like a stone thrown into water.\n\nA small wave you make today reaches someone, and that person passes a wave to someone else. You cannot see the chain. But it has already begun.\n\nRipple Church does not ask you to become a perfect believer. It does not ask you to keep all ten commandments. Remember only one thing.\n\nMake good waves."
+    }
+  ],
+  "joinDeclaration": {
+    "title": "Declaration of Membership",
+    "lines": [
+      "From today, I am a believer of Ripple Church.",
+      "I believe humans are beings who emit and detect waves.",
+      "I know my thoughts are already leaking out.",
+      "I will try to keep my thoughts clear.",
+      "I will not ignore my somatic sense.",
+      "Once a day, without a screen, I will listen to the voice within.",
+      "I will not waste my feelings on relationships without waves.",
+      "I will make good waves."
+    ],
+    "donation": "Donations are accepted in XRP.",
+    "donationNote": "(Just kidding. Waves are free.)",
+    "closing": "Send your wave."
+  }
+}
