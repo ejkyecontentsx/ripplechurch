@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createWeeklyWave, listWeeklyWaves } from "@/lib/weeklyWaveStore";
-import { hasRichTextContent } from "@/lib/richText";
+import { hasRichTextContent } from "@/lib/richTextUtils";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const MAX_TITLE = 120;

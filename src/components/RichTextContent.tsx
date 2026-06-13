@@ -1,3 +1,5 @@
+"use client";
+
 import { sanitizeRichHtml } from "@/lib/richText";
 
 type Props = {

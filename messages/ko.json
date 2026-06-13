@@ -140,6 +140,8 @@
     "submitting": "보내는 중...",
     "submitSuccess": "주간 파동이 등록되었습니다.",
     "submitError": "주간 파동을 등록하지 못했습니다.",
+    "submitServerError": "서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
+    "submitTooLarge": "본문이 너무 깁니다. 내용을 줄여 주세요.",
     "backToList": "주간 파동 목록"
   },
   "logo": {

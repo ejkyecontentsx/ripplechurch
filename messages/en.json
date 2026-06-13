@@ -140,6 +140,8 @@
     "submitting": "Sending...",
     "submitSuccess": "Weekly wave published.",
     "submitError": "Could not publish weekly wave.",
+    "submitServerError": "A server error occurred. Please try again shortly.",
+    "submitTooLarge": "Content is too large. Please shorten the body.",
     "backToList": "All weekly waves"
   },
   "logo": {

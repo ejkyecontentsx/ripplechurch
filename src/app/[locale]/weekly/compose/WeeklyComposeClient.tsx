@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/routing";
 import RichTextEditor from "@/components/RichTextEditor";
-import { hasRichTextContent } from "@/lib/richText";
+import { hasRichTextContent } from "@/lib/richTextUtils";
 
 type LocaleFields = {
   title: string;
@@ -112,6 +112,15 @@ export default function WeeklyComposeClient() {
           content_ja: ja.content,
         }),
       });
+
+      const contentType = res.headers.get("content-type") ?? "";
+      if (!contentType.includes("application/json")) {
+        throw new Error(
+          res.status === 413
+            ? t("submitTooLarge")
+            : t("submitServerError")
+        );
+      }
 
       const data = await res.json();
       if (!res.ok) {

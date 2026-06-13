@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { getWeeklyWaveContent, type WeeklyWave } from "@/lib/supabase";
 import type { WeeklyWaveStorage } from "@/lib/weeklyWaveStore";
-import { getPlainPreview } from "@/lib/richText";
+import { getPlainPreview } from "@/lib/richTextUtils";
 import { getDateLocale } from "@/lib/dateLocale";
 
 function getWavedIds(): Set<string> {

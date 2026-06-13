@@ -3,7 +3,7 @@ import { Link } from "@/i18n/routing";
 import RippleLogo from "@/components/RippleLogo";
 import { getWeeklyWaveContent } from "@/lib/supabase";
 import { listWeeklyWaves } from "@/lib/weeklyWaveStore";
-import { getPlainPreview } from "@/lib/richText";
+import { getPlainPreview } from "@/lib/richTextUtils";
 import { getDateLocale } from "@/lib/dateLocale";
 
 type Props = {

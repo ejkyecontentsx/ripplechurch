@@ -5,7 +5,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useEffect } from "react";
-import { stripHtml } from "@/lib/richText";
+import { stripHtmlTags } from "@/lib/richTextUtils";
 
 type Props = {
   value: string;
@@ -101,7 +101,7 @@ export default function RichTextEditor({
     editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
   };
 
-  const plainLength = stripHtml(value).length;
+  const plainLength = stripHtmlTags(value).length;
 
   return (
     <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">

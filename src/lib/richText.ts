@@ -1,3 +1,5 @@
+"use client";
+
 import DOMPurify from "isomorphic-dompurify";
 
 const ALLOWED_TAGS = [
@@ -21,24 +23,4 @@ export function sanitizeRichHtml(html: string): string {
     ALLOWED_TAGS,
     ALLOWED_ATTR,
   });
-}
-
-export function stripHtml(html: string): string {
-  return DOMPurify.sanitize(html, { ALLOWED_TAGS: [] })
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-export function truncatePlainText(text: string, max = 180): string {
-  if (text.length <= max) return text;
-  return `${text.slice(0, max).trim()}…`;
-}
-
-export function getPlainPreview(htmlOrText: string, max = 180): string {
-  const plain = stripHtml(htmlOrText);
-  return truncatePlainText(plain, max);
-}
-
-export function hasRichTextContent(html: string): boolean {
-  return stripHtml(html).length > 0;
 }

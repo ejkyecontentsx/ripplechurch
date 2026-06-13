@@ -113,7 +113,12 @@ export async function createWeeklyWave(
   const storage = getWeeklyWaveStorage();
 
   if (storage === "supabase") {
-    const supabase = getSupabaseAdmin() ?? getSupabase()!;
+    const supabase = getSupabaseAdmin();
+    if (!supabase) {
+      throw new Error(
+        "주간 파동 등록에 SUPABASE_SERVICE_ROLE_KEY가 필요합니다."
+      );
+    }
     const { data, error } = await supabase
       .from("weekly_waves")
       .insert(input)

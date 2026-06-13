@@ -140,6 +140,8 @@
     "submitting": "送信中...",
     "submitSuccess": "週間の波動が登録されました。",
     "submitError": "週間の波動を登録できませんでした。",
+    "submitServerError": "サーバーエラーが発生しました。しばらくしてから再度お試しください。",
+    "submitTooLarge": "本文が長すぎます。内容を短くしてください。",
     "backToList": "週間の波動一覧"
   },
   "logo": {
