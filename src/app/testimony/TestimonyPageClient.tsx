@@ -30,7 +30,8 @@ function markWaved(id: string) {
 
 export default function TestimonyPageClient() {
   const [testimonies, setTestimonies] = useState<Testimony[]>([]);
-  const [storage, setStorage] = useState<TestimonyStorage>("unavailable");
+  const [storage, setStorage] = useState<TestimonyStorage | null>(null);
+  const isDev = process.env.NODE_ENV === "development";
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
@@ -143,7 +144,7 @@ export default function TestimonyPageClient() {
     <section className="mx-auto max-w-5xl px-4 py-12 md:py-16">
       <h1 className="mb-8 text-center text-2xl font-semibold md:text-3xl">간증</h1>
 
-      {storage === "unavailable" && (
+      {!loading && isDev && storage === "unavailable" && (
         <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
           간증 저장소(Supabase)가 연결되지 않았습니다. Vercel 환경변수에{" "}
           <code className="rounded bg-amber-100 px-1">NEXT_PUBLIC_SUPABASE_URL</code>,{" "}
@@ -153,7 +154,7 @@ export default function TestimonyPageClient() {
         </div>
       )}
 
-      {storage === "local" && (
+      {!loading && isDev && storage === "local" && (
         <div className="mb-6 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
           로컬 개발 모드: 간증이 <code className="rounded bg-blue-100 px-1">data/testimonies.json</code>에
           저장됩니다. 배포 환경에서는 Supabase 설정이 필요합니다.
@@ -198,7 +199,7 @@ export default function TestimonyPageClient() {
 
         <button
           type="submit"
-          disabled={submitting || storage === "unavailable"}
+          disabled={submitting || loading || storage === "unavailable"}
           className="w-full rounded-full bg-accent py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto sm:px-8"
         >
           {submitting ? "보내는 중..." : "파동 보내기"}
