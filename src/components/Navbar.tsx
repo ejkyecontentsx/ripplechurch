@@ -8,8 +8,9 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 const navItems = [
   { href: "/scripture" as const, key: "scripture" as const },
-  { href: "/join" as const, key: "join" as const },
+  { href: "/weekly" as const, key: "weekly" as const },
   { href: "/testimony" as const, key: "testimony" as const },
+  { href: "/join" as const, key: "join" as const },
   { href: "/about" as const, key: "about" as const },
 ];
 
@@ -30,18 +31,25 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-6 md:flex">
           <ul className="flex items-center gap-8">
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "/weekly"
+                  ? pathname === "/weekly" || pathname.startsWith("/weekly/")
+                  : pathname === item.href;
+
+              return (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   className={`text-sm transition-colors hover:text-accent ${
-                    pathname === item.href ? "font-medium text-accent" : "text-muted"
+                    isActive ? "font-medium text-accent" : "text-muted"
                   }`}
                 >
                   {t(item.key)}
                 </Link>
               </li>
-            ))}
+              );
+            })}
           </ul>
           <LanguageSwitcher />
         </div>
@@ -71,19 +79,26 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-gray-100 bg-white px-4 py-4 md:hidden">
           <ul className="flex flex-col gap-4">
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "/weekly"
+                  ? pathname === "/weekly" || pathname.startsWith("/weekly/")
+                  : pathname === item.href;
+
+              return (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   className={`block text-base ${
-                    pathname === item.href ? "font-medium text-accent" : "text-muted"
+                    isActive ? "font-medium text-accent" : "text-muted"
                   }`}
                   onClick={() => setOpen(false)}
                 >
                   {t(item.key)}
                 </Link>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       )}

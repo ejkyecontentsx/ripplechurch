@@ -6,10 +6,13 @@
     "scriptureTitle": "파동의 서 — Ripple Church",
     "joinTitle": "입교 — Ripple Church",
     "joinCardTitle": "입교 카드 — Ripple Church",
-    "testimonyTitle": "간증 — Ripple Church"
+    "testimonyTitle": "간증 — Ripple Church",
+    "weeklyTitle": "주간 파동 — Ripple Church",
+    "weeklyComposeTitle": "주간 파동 작성 — Ripple Church"
   },
   "nav": {
     "scripture": "경전",
+    "weekly": "주간 파동",
     "join": "입교",
     "testimony": "간증",
     "about": "소개",
@@ -23,6 +26,7 @@
     "headline": "인간은 파동을 방출하고 감지한다",
     "subheadline": "선한 파동을 만들어라",
     "readScripture": "경전 읽기",
+    "readWeekly": "주간 파동 읽기",
     "join": "입교하기"
   },
   "scripture": {
@@ -82,6 +86,7 @@
   },
   "testimony": {
     "title": "간증",
+    "subtitle": "신자들이 나누는 파동",
     "nickname": "닉네임",
     "nicknamePlaceholder": "닉네임 (최대 20자)",
     "content": "간증",
@@ -96,6 +101,36 @@
     "submitErrorRetry": "간증을 보내지 못했습니다. 잠시 후 다시 시도해주세요.",
     "devUnavailable": "간증 저장소(Supabase)가 연결되지 않았습니다. Vercel 환경변수에 NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY를 등록하고 Supabase에서 supabase/schema.sql을 실행해 주세요.",
     "devLocal": "로컬 개발 모드: 간증이 data/testimonies.json에 저장됩니다. 배포 환경에서는 Supabase 설정이 필요합니다."
+  },
+  "weekly": {
+    "title": "주간 파동",
+    "subtitle": "파동 송신자가 전하는 일주일의 파동",
+    "sender": "파동 송신자",
+    "latest": "이번 주",
+    "readMore": "전문 보기",
+    "backToList": "주간 파동 목록",
+    "loading": "파동을 불러오는 중...",
+    "empty": "아직 주간 파동이 없습니다.",
+    "notFound": "주간 파동을 찾을 수 없습니다.",
+    "wave": "공감 파동 보내기 ⚡",
+    "fetchError": "주간 파동을 불러오지 못했습니다.",
+    "devUnavailable": "주간 파동 저장소(Supabase)가 연결되지 않았습니다. Supabase에서 supabase/schema.sql을 실행해 주세요.",
+    "devLocal": "로컬 개발 모드: 주간 파동이 data/weekly-waves.json에 저장됩니다."
+  },
+  "weeklyCompose": {
+    "title": "주간 파동 작성",
+    "subtitle": "파동 송신자 전용 — ko / en / ja 본문을 함께 등록합니다.",
+    "publishedAtLabel": "발행일",
+    "slugLabel": "URL slug (선택)",
+    "slugPlaceholder": "비우면 발행일 사용 (예: 2026-05-26)",
+    "titleLabel": "제목",
+    "contentLabel": "본문",
+    "adminSecretLabel": "관리자 비밀키",
+    "submit": "파동 보내기",
+    "submitting": "보내는 중...",
+    "submitSuccess": "주간 파동이 등록되었습니다.",
+    "submitError": "주간 파동을 등록하지 못했습니다.",
+    "backToList": "주간 파동 목록"
   },
   "logo": {
     "subtitle": "파동의 서"

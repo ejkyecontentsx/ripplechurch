@@ -6,10 +6,13 @@
     "scriptureTitle": "Book of Waves — Ripple Church",
     "joinTitle": "Join — Ripple Church",
     "joinCardTitle": "Membership Card — Ripple Church",
-    "testimonyTitle": "Testimonies — Ripple Church"
+    "testimonyTitle": "Testimonies — Ripple Church",
+    "weeklyTitle": "Weekly Wave — Ripple Church",
+    "weeklyComposeTitle": "Compose Weekly Wave — Ripple Church"
   },
   "nav": {
     "scripture": "Scripture",
+    "weekly": "Weekly Wave",
     "join": "Join",
     "testimony": "Testimonies",
     "about": "About",
@@ -23,6 +26,7 @@
     "headline": "Humans emit and detect waves",
     "subheadline": "Make good waves",
     "readScripture": "Read Scripture",
+    "readWeekly": "Read Weekly Wave",
     "join": "Join the Church"
   },
   "scripture": {
@@ -82,6 +86,7 @@
   },
   "testimony": {
     "title": "Testimonies",
+    "subtitle": "Waves shared by believers",
     "nickname": "Nickname",
     "nicknamePlaceholder": "Nickname (max 20 chars)",
     "content": "Testimony",
@@ -96,6 +101,36 @@
     "submitErrorRetry": "Could not send testimony. Please try again shortly.",
     "devUnavailable": "Testimony storage (Supabase) is not connected. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to Vercel, then run supabase/schema.sql in Supabase.",
     "devLocal": "Local dev mode: testimonies are saved to data/testimonies.json. Supabase is required in production."
+  },
+  "weekly": {
+    "title": "Weekly Wave",
+    "subtitle": "A weekly wave from the Wave Sender",
+    "sender": "Wave Sender",
+    "latest": "This week",
+    "readMore": "Read full wave",
+    "backToList": "All weekly waves",
+    "loading": "Loading waves...",
+    "empty": "No weekly waves yet.",
+    "notFound": "Weekly wave not found.",
+    "wave": "Send empathy wave ⚡",
+    "fetchError": "Could not load weekly waves.",
+    "devUnavailable": "Weekly wave storage (Supabase) is not connected. Run supabase/schema.sql in Supabase.",
+    "devLocal": "Local dev mode: weekly waves are saved to data/weekly-waves.json."
+  },
+  "weeklyCompose": {
+    "title": "Compose Weekly Wave",
+    "subtitle": "Wave Sender only — register ko / en / ja content together.",
+    "publishedAtLabel": "Publish date",
+    "slugLabel": "URL slug (optional)",
+    "slugPlaceholder": "Leave blank to use publish date (e.g. 2026-05-26)",
+    "titleLabel": "Title",
+    "contentLabel": "Body",
+    "adminSecretLabel": "Admin secret",
+    "submit": "Send wave",
+    "submitting": "Sending...",
+    "submitSuccess": "Weekly wave published.",
+    "submitError": "Could not publish weekly wave.",
+    "backToList": "All weekly waves"
   },
   "logo": {
     "subtitle": "Book of Waves"

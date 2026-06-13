@@ -1,6 +1,6 @@
-# Supabase 간증 보드 설정
+# Supabase 간증·주간 파동 보드 설정
 
-간증 저장은 Supabase `testimonies` 테이블을 사용합니다.
+간증(`testimonies`)과 주간 파동(`weekly_waves`)은 Supabase를 사용합니다.
 
 ## 1. Supabase 프로젝트 생성
 
@@ -13,10 +13,14 @@
 
 **Project Settings → API** 에서:
 
-| 환경변수 | 값 |
-|----------|-----|
-| `NEXT_PUBLIC_SUPABASE_URL` | Project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `anon` `public` key |
+| 환경변수 | 값 | 용도 |
+|----------|-----|------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Project URL | 읽기/쓰기 공통 |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `anon` `public` key | 간증·주간 파동 읽기, 파동 반응 |
+| `SUPABASE_SERVICE_ROLE_KEY` | `service_role` key | **주간 파동 등록만** (서버 전용) |
+| `WEEKLY_WAVE_ADMIN_SECRET` | 직접 생성한 비밀 문자열 | `/weekly/compose` 작성 인증 |
+
+> `service_role` 키와 `WEEKLY_WAVE_ADMIN_SECRET`은 절대 클라이언트에 노출하지 마세요.
 
 ## 3. 로컬 개발
 
@@ -25,25 +29,48 @@
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOi...
+WEEKLY_WAVE_ADMIN_SECRET=your-secret-here
 ```
 
 `npm run dev` 재시작.
 
-> Supabase 없이 로컬만 테스트할 경우, 개발 모드에서는 `data/testimonies.json`에 자동 저장됩니다.
+> Supabase 없이 로컬만 테스트할 경우, 개발 모드에서는 `data/testimonies.json`, `data/weekly-waves.json`에 자동 저장됩니다.
 
 ## 4. Vercel 배포
 
-**Vercel → Project → Settings → Environment Variables** 에 위 두 값 등록 후 **Redeploy**.
+**Vercel → Project → Settings → Environment Variables** 에 위 값들을 등록 후 **Redeploy**.
 
 ## 5. 동작 확인
 
+### 간증 (신자 보드)
+
 ```bash
 curl https://ripplechurch.net/api/testimony
-# storage: "supabase" 이어야 함
-
-curl -X POST https://ripplechurch.net/api/testimony \
-  -H "Content-Type: application/json" \
-  -d '{"nickname":"테스트","content":"파동 테스트"}'
 ```
 
-성공 시 `testimony` 객체가 반환됩니다.
+### 주간 파동 (파동 송신자 보드)
+
+```bash
+curl https://ripplechurch.net/api/weekly-wave
+```
+
+### 주간 파동 등록
+
+브라우저에서 `https://ripplechurch.net/ko/weekly/compose` 접속 후 관리자 비밀키로 작성하거나:
+
+```bash
+curl -X POST https://ripplechurch.net/api/weekly-wave \
+  -H "Content-Type: application/json" \
+  -H "x-admin-secret: your-secret-here" \
+  -d '{
+    "slug": "2026-05-26",
+    "published_at": "2026-05-26",
+    "title_ko": "첫 주간 파동",
+    "content_ko": "파동 송신자의 첫 메시지입니다.",
+    "title_en": "First Weekly Wave",
+    "content_en": "The Wave Sender'\''s first message.",
+    "title_ja": "最初の週間の波動",
+    "content_ja": "波動送信者の最初のメッセージです。"
+  }'
+```

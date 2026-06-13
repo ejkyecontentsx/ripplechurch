@@ -145,7 +145,10 @@ export default function TestimonyPageClient() {
 
   return (
     <section className="mx-auto max-w-5xl px-4 py-12 md:py-16">
-      <h1 className="mb-8 text-center text-2xl font-semibold md:text-3xl">{t("title")}</h1>
+      <div className="mb-8 text-center">
+        <h1 className="text-2xl font-semibold md:text-3xl">{t("title")}</h1>
+        <p className="mt-2 text-sm text-muted">{t("subtitle")}</p>
+      </div>
 
       {!loading && isDev && storage === "unavailable" && (
         <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
