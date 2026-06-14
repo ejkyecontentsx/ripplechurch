@@ -76,6 +76,8 @@
     "saveImage": "画像として保存",
     "saving": "保存中...",
     "share": "共有する",
+    "copyLink": "リンクをコピー",
+    "copied": "コピーしました",
     "qrHint": "QRコードを読み取ると、ウェブで入教カードを表示できます。",
     "donationJoke": "献金はXRPで受け付けています。",
     "donationPunchline": "（冗談です。波動は無料です。）",

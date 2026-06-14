@@ -21,6 +21,8 @@ export default function JoinPageClient() {
   const [joinError, setJoinError] = useState("");
   const [joinDate] = useState(() => new Date());
   const [saving, setSaving] = useState(false);
+  const [copying, setCopying] = useState(false);
+  const [copied, setCopied] = useState(false);
   const joinedRecorded = useRef(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const canShare = typeof navigator !== "undefined" && !!navigator.share;
@@ -114,11 +116,24 @@ export default function JoinPageClient() {
     try {
       await navigator.share({
         title: t("shareTitle"),
-        text: t("shareText"),
         url: viewUrl,
       });
     } catch {
       // user cancelled or share failed
+    }
+  };
+
+  const handleCopyLink = async () => {
+    if (!viewUrl) return;
+    setCopying(true);
+    try {
+      await navigator.clipboard.writeText(viewUrl);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // clipboard unavailable
+    } finally {
+      setCopying(false);
     }
   };
 
@@ -195,7 +210,7 @@ export default function JoinPageClient() {
             />
           </JoinCardMount>
 
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
             <button
               type="button"
               onClick={handleSaveImage}
@@ -203,6 +218,14 @@ export default function JoinPageClient() {
               className="rounded-full border border-accent px-6 py-3 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-white disabled:opacity-50"
             >
               {saving ? t("saving") : t("saveImage")}
+            </button>
+            <button
+              type="button"
+              onClick={handleCopyLink}
+              disabled={copying || !viewUrl}
+              className="rounded-full border border-foreground px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-white disabled:opacity-50"
+            >
+              {copied ? t("copied") : t("copyLink")}
             </button>
             {canShare && viewUrl && (
               <button

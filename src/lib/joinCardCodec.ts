@@ -19,6 +19,13 @@ function base64UrlDecode(b64url: string) {
   return utf8;
 }
 
+/** 공유 앱이 URL 뒤에 문구를 붙이는 경우 base64url 부분만 추출 */
+export function sanitizeEncodedPayload(encoded: string): string {
+  const trimmed = encoded.trim();
+  const match = trimmed.match(/^[A-Za-z0-9_-]+/);
+  return match?.[0] ?? trimmed;
+}
+
 export function encodeJoinCardPayload(payload: JoinCardPayloadV1) {
   const safe: JoinCardPayloadV1 = {
     v: 1,
@@ -40,7 +47,7 @@ export function encodeJoinCardPayload(payload: JoinCardPayloadV1) {
 
 export function decodeJoinCardPayload(encoded: string): JoinCardPayloadV1 | null {
   try {
-    const raw = JSON.parse(base64UrlDecode(encoded));
+    const raw = JSON.parse(base64UrlDecode(sanitizeEncodedPayload(encoded)));
     if (!raw || typeof raw !== "object") return null;
     if (raw.v !== 1) return null;
     if (typeof raw.joinedAtISO !== "string") return null;
