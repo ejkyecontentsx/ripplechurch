@@ -29,6 +29,10 @@
     "readWeekly": "주간 파동 읽기",
     "join": "입교하기"
   },
+  "members": {
+    "count": "현재 {count}명의 신자",
+    "empty": "첫 신자를 기다리는 중"
+  },
   "scripture": {
     "title": "파동의 서",
     "subtitle": "Book of Waves",
@@ -67,6 +71,8 @@
     "declarationLabel": "나만의 선언 (선택)",
     "declarationPlaceholder": "카드에 담을 한 줄 선언을 적어주세요. 비우면 기본 문구가 표시됩니다.",
     "submit": "파동을 보내다",
+    "joining": "입교 중...",
+    "joinError": "입교를 저장하지 못했습니다. 잠시 후 다시 시도해 주세요.",
     "saveImage": "이미지로 저장",
     "saving": "저장 중...",
     "share": "공유하기",
@@ -79,6 +85,7 @@
   "joinCard": {
     "defaultDeclaration": "나는 Ripple Church의 신자다",
     "certification": "위 사람은 본 리플교의 신도임을 증명합니다",
+    "memberNumber": "신도 번호 {number}",
     "viewTitle": "입교 카드",
     "lookupTitle": "입교 카드 조회",
     "invalidLink": "유효하지 않은 카드 링크입니다.",

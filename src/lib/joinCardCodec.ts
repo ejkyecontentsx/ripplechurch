@@ -5,6 +5,7 @@ export type JoinCardPayloadV1 = {
   name?: string;
   declaration?: string;
   joinedAtISO: string;
+  memberNumber?: number;
 };
 
 function base64UrlEncode(utf8: string) {
@@ -27,6 +28,13 @@ export function encodeJoinCardPayload(payload: JoinCardPayloadV1) {
   if (payload.declaration?.trim()) {
     safe.declaration = payload.declaration.trim().slice(0, MAX_JOIN_CARD_DECLARATION_LENGTH);
   }
+  if (
+    typeof payload.memberNumber === "number" &&
+    Number.isInteger(payload.memberNumber) &&
+    payload.memberNumber > 0
+  ) {
+    safe.memberNumber = payload.memberNumber;
+  }
   return base64UrlEncode(JSON.stringify(safe));
 }
 
@@ -38,6 +46,7 @@ export function decodeJoinCardPayload(encoded: string): JoinCardPayloadV1 | null
     if (typeof raw.joinedAtISO !== "string") return null;
     if (raw.name != null && typeof raw.name !== "string") return null;
     if (raw.declaration != null && typeof raw.declaration !== "string") return null;
+    if (raw.memberNumber != null && typeof raw.memberNumber !== "number") return null;
     return raw as JoinCardPayloadV1;
   } catch {
     return null;

@@ -32,6 +32,7 @@ yarn-error.log*
 # local testimony fallback (dev only)
 /data/testimonies.json
 /data/weekly-waves.json
+/data/members.json
 
 # typescript
 *.tsbuildinfo

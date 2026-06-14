@@ -29,6 +29,10 @@
     "readWeekly": "週間の波動を読む",
     "join": "入教する"
   },
+  "members": {
+    "count": "現在 {count} 名の信者",
+    "empty": "最初の信者を待っています"
+  },
   "scripture": {
     "title": "波の書",
     "subtitle": "Book of Waves",
@@ -67,6 +71,8 @@
     "declarationLabel": "あなただけの宣言（任意）",
     "declarationPlaceholder": "カードに載せる一行の宣言を書いてください。空欄の場合は既定の文が表示されます。",
     "submit": "波動を送る",
+    "joining": "入教中...",
+    "joinError": "入教を保存できませんでした。しばらくしてから再度お試しください。",
     "saveImage": "画像として保存",
     "saving": "保存中...",
     "share": "共有する",
@@ -79,6 +85,7 @@
   "joinCard": {
     "defaultDeclaration": "私は Ripple Church の信者である",
     "certification": "上記の者が本リップル教会の信者であることを証明します",
+    "memberNumber": "信者番号 {number}",
     "viewTitle": "入教カード",
     "lookupTitle": "入教カード照会",
     "invalidLink": "無効なカードリンクです。",

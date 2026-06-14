@@ -18,6 +18,16 @@ export interface Testimony {
   created_at: string;
 }
 
+export interface Member {
+  id: string;
+  member_number: number;
+  name: string | null;
+  declaration: string | null;
+  locale: string;
+  joined_at: string;
+  created_at: string;
+}
+
 export interface WeeklyWave {
   id: string;
   slug: string;

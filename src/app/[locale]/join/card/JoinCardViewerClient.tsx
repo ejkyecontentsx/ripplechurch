@@ -70,6 +70,7 @@ export default function JoinCardViewerClient() {
           name={payload.name}
           declaration={payload.declaration}
           joinedAt={joinedAt}
+          memberNumber={payload.memberNumber}
         />
       </JoinCardMount>
 

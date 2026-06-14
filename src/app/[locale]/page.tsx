@@ -3,6 +3,8 @@ import { Link } from "@/i18n/routing";
 import RippleLogo from "@/components/RippleLogo";
 import { getWeeklyWaveContent } from "@/lib/supabase";
 import { listWeeklyWaves } from "@/lib/weeklyWaveStore";
+import { getMemberCount } from "@/lib/memberStore";
+import MemberCount from "@/components/MemberCount";
 import { getPlainPreview } from "@/lib/richTextUtils";
 import { getDateLocale } from "@/lib/dateLocale";
 
@@ -26,6 +28,14 @@ export default async function HomePage({ params: { locale } }: Props) {
 
   const latestContent = latest ? getWeeklyWaveContent(latest, locale) : null;
 
+  let memberCount = 0;
+  try {
+    const result = await getMemberCount();
+    memberCount = result.count;
+  } catch {
+    memberCount = 0;
+  }
+
   return (
     <section className="mx-auto flex max-w-3xl flex-col items-center px-4 py-16 text-center md:py-24">
       <div className="animate-fade-in w-full max-w-md">
@@ -40,6 +50,7 @@ export default async function HomePage({ params: { locale } }: Props) {
         {t("headline")}
       </h1>
       <p className="mt-3 text-lg text-muted">{t("subheadline")}</p>
+      <MemberCount count={memberCount} className="mt-4" />
 
       {latest && latestContent && (
         <div className="mt-10 w-full rounded-xl border border-accent/20 bg-white p-6 text-left shadow-sm">

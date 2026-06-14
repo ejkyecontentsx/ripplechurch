@@ -6,6 +6,8 @@ import { QRCodeSVG } from "qrcode.react";
 import { useLocale, useTranslations } from "next-intl";
 import { getDateLocale } from "@/lib/dateLocale";
 
+import { formatMemberNumber } from "@/lib/memberNumber";
+
 function formatDate(date: Date, locale: string) {
   return date.toLocaleDateString(getDateLocale(locale), {
     year: "numeric",
@@ -18,11 +20,13 @@ export default function JoinCard({
   name,
   declaration,
   joinedAt,
+  memberNumber,
   qrUrl,
 }: {
   name?: string;
   declaration?: string;
   joinedAt: Date;
+  memberNumber?: number;
   qrUrl?: string;
 }) {
   const t = useTranslations("joinCard");
@@ -66,6 +70,11 @@ export default function JoinCard({
           </div>
 
           <div className="relative z-10 max-w-md px-4 text-center">
+            {memberNumber != null && (
+              <p className="mb-3 font-mono text-sm tracking-[0.2em] text-accent">
+                {t("memberNumber", { number: formatMemberNumber(memberNumber) })}
+              </p>
+            )}
             <p className="text-base leading-snug text-white">{displayDeclaration}</p>
             {!!name?.trim() && (
               <p className="mt-2 text-lg font-medium text-accent">{name.trim()}</p>

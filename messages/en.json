@@ -29,6 +29,10 @@
     "readWeekly": "Read Weekly Wave",
     "join": "Join the Church"
   },
+  "members": {
+    "count": "{count} believers",
+    "empty": "Waiting for the first believer"
+  },
   "scripture": {
     "title": "Book of Waves",
     "subtitle": "Book of Waves",
@@ -67,6 +71,8 @@
     "declarationLabel": "Your declaration (optional)",
     "declarationPlaceholder": "Write a one-line declaration for your card. A default line appears if left blank.",
     "submit": "Send your wave",
+    "joining": "Joining...",
+    "joinError": "Could not save your membership. Please try again shortly.",
     "saveImage": "Save as image",
     "saving": "Saving...",
     "share": "Share",
@@ -79,6 +85,7 @@
   "joinCard": {
     "defaultDeclaration": "I am a believer of Ripple Church",
     "certification": "This certifies the above as a member of Ripple Church",
+    "memberNumber": "Member No. {number}",
     "viewTitle": "Membership Card",
     "lookupTitle": "View Membership Card",
     "invalidLink": "This card link is invalid.",
