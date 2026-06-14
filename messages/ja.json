@@ -91,7 +91,10 @@
     "viewTitle": "入教カード",
     "lookupTitle": "入教カード照会",
     "invalidLink": "無効なカードリンクです。",
-    "invalidLinkHint": "{joinPath} で新しく作成してください。"
+    "invalidLinkHint": "{joinPath} で新しく作成してください。",
+    "invalidMember": "有効な信者ではありません。",
+    "invalidMemberHint": "共有リンクが改ざんされたか、データベースに登録されていない信者番号です。",
+    "verifying": "信者を確認中..."
   },
   "testimony": {
     "title": "証言",

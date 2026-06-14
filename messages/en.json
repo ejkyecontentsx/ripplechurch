@@ -91,7 +91,10 @@
     "viewTitle": "Membership Card",
     "lookupTitle": "View Membership Card",
     "invalidLink": "This card link is invalid.",
-    "invalidLinkHint": "Please create a new one at {joinPath}."
+    "invalidLinkHint": "Please create a new one at {joinPath}.",
+    "invalidMember": "This is not a valid member.",
+    "invalidMemberHint": "The shared link was tampered with or the member number is not registered.",
+    "verifying": "Verifying member..."
   },
   "testimony": {
     "title": "Testimonies",

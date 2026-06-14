@@ -91,7 +91,10 @@
     "viewTitle": "입교 카드",
     "lookupTitle": "입교 카드 조회",
     "invalidLink": "유효하지 않은 카드 링크입니다.",
-    "invalidLinkHint": "{joinPath}에서 다시 생성해 주세요."
+    "invalidLinkHint": "{joinPath}에서 다시 생성해 주세요.",
+    "invalidMember": "유효하지 않은 신도입니다.",
+    "invalidMemberHint": "공유 링크가 변조되었거나 데이터베이스에 등록되지 않은 신도 번호입니다.",
+    "verifying": "신도 확인 중..."
   },
   "testimony": {
     "title": "간증",

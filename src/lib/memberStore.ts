@@ -115,3 +115,67 @@ export async function createMember(
     "신도 저장소가 설정되지 않았습니다. Supabase 환경변수를 등록해 주세요."
   );
 }
+
+export type VerifyMemberInput = {
+  member_number: number;
+  name?: string;
+  declaration?: string;
+  joined_at: string;
+};
+
+function normalizeOptional(value?: string | null): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
+function sameJoinedAt(stored: string, provided: string): boolean {
+  const storedMs = new Date(stored).getTime();
+  const providedMs = new Date(provided).getTime();
+  return !Number.isNaN(storedMs) && !Number.isNaN(providedMs) && storedMs === providedMs;
+}
+
+function memberMatchesPayload(member: Member, input: VerifyMemberInput): boolean {
+  if (member.member_number !== input.member_number) return false;
+  if (!sameJoinedAt(member.joined_at, input.joined_at)) return false;
+  if (normalizeOptional(member.name) !== normalizeOptional(input.name)) return false;
+  if (normalizeOptional(member.declaration) !== normalizeOptional(input.declaration)) {
+    return false;
+  }
+  return true;
+}
+
+async function getMemberByNumber(memberNumber: number): Promise<Member | null> {
+  const storage = getMemberStorage();
+
+  if (storage === "supabase") {
+    const supabase = getSupabase()!;
+    const { data, error } = await supabase
+      .from("members")
+      .select("*")
+      .eq("member_number", memberNumber)
+      .maybeSingle();
+
+    if (error) throw new Error(error.message);
+    return data;
+  }
+
+  if (storage === "local") {
+    const members = await readLocalMembers();
+    return members.find((item) => item.member_number === memberNumber) ?? null;
+  }
+
+  return null;
+}
+
+export async function verifyMember(
+  input: VerifyMemberInput
+): Promise<{ valid: boolean; storage: MemberStorage }> {
+  const storage = getMemberStorage();
+  if (storage === "unavailable") {
+    return { valid: false, storage };
+  }
+
+  const member = await getMemberByNumber(input.member_number);
+  if (!member) return { valid: false, storage };
+  return { valid: memberMatchesPayload(member, input), storage };
+}
