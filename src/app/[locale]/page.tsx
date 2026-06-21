@@ -12,6 +12,8 @@ type Props = {
   params: { locale: string };
 };
 
+export const revalidate = 60;
+
 export default async function HomePage({ params: { locale } }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("home");

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createWeeklyWave, listWeeklyWaves } from "@/lib/weeklyWaveStore";
 import { hasRichTextContent } from "@/lib/richTextUtils";
+import { routing } from "@/i18n/routing";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const MAX_TITLE = 120;
@@ -77,6 +79,11 @@ export async function POST(request: Request) {
     }
 
     const { wave, storage } = await createWeeklyWave(validated.data);
+
+    for (const locale of routing.locales) {
+      revalidatePath(`/${locale}`);
+    }
+
     return NextResponse.json({ wave, storage }, { status: 201 });
   } catch (error) {
     const message =
